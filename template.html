@@ -31,17 +31,21 @@ html[data-style="minimal"] h1{font-weight:700}
 html[data-style][data-mode="dark"]{--paper:color-mix(in srgb,var(--brand) 22%,#101010);--soft:color-mix(in srgb,var(--brand) 32%,#161616);--ink:#F1EEE8;--muted:#B9B3AA}
 html[data-buttons="pill"]{--r-btn:999px} html[data-buttons="rounded"]{--r-btn:12px} html[data-buttons="square"]{--r-btn:0}
 html{--r-photo:var(--r)} html[data-photos="sharp"]{--r-photo:0} html[data-photos="rounded"]{--r-photo:22px}
-html{--sec:104px} html[data-spacing="compact"]{--sec:68px} html[data-spacing="airy"]{--sec:136px}
+html{--sec:128px} html[data-spacing="compact"]{--sec:88px} html[data-spacing="airy"]{--sec:168px}
+section[id]{scroll-margin-top:84px}
 
 /* ============ BASE ============ */
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.65;transition:background .4s,color .4s}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;transition:background .4s,color .4s}
+p{max-width:62ch}
+h2 + p,h2 + .intro{margin-top:18px}
 a{color:inherit} img{max-width:100%;display:block}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
 .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
 h1,h2,h3{font-family:var(--display);font-weight:var(--dw);letter-spacing:var(--track);font-stretch:var(--stretch);line-height:1.04}
-h2{font-size:clamp(2.2rem,5vw,3.6rem);max-width:16ch}
+h2{font-size:clamp(2.1rem,4.4vw,3.4rem);max-width:18ch;text-wrap:balance}
+h1{text-wrap:balance}
 section{padding:var(--sec) 0}
 .disp{font-family:var(--display);font-stretch:var(--stretch)}
 
@@ -61,7 +65,8 @@ html[data-style="street"] .awning{box-shadow:0 5px 0 var(--ink)}
 .nav a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s}
 .nav a:not(.btn):hover::after{transform:scaleX(1)}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--display);font-stretch:var(--stretch);font-weight:700;font-size:1rem;text-decoration:none;padding:14px 24px;border-radius:var(--r-btn);border:2px solid transparent;transition:background .2s,color .2s,box-shadow .2s,transform .35s}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--display);font-stretch:var(--stretch);font-weight:700;font-size:1rem;text-decoration:none;padding:14px 24px;border-radius:var(--r-btn);border:2px solid transparent;transition:background .2s ease,color .2s ease,box-shadow .2s ease,transform .3s cubic-bezier(.2,.7,.2,1)}
+.btn:active{transform:scale(.98)}
 .btn-accent{background:var(--accent);color:#1b1b1b}
 .btn-brand{background:var(--brand);color:var(--brand-ink)}
 .btn-brand:hover{box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 25%,transparent)}
@@ -70,15 +75,15 @@ html[data-style="street"] .awning{box-shadow:0 5px 0 var(--ink)}
 
 /* photo slots */
 .photo{position:relative;border-radius:var(--r-photo);overflow:hidden;color:var(--brand-ink);background:linear-gradient(160deg,color-mix(in srgb,var(--brand) 92%,#000),color-mix(in srgb,var(--brand) 55%,#1a120d))}
-.photo::before{content:"";position:absolute;inset:0;opacity:.18;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.photo img{position:relative;width:100%;height:100%;object-fit:cover;transition:transform .8s}
-.photo:hover img{transform:scale(1.04)}
-.photo figcaption{position:absolute;left:18px;bottom:16px;right:18px;font-family:var(--display);font-stretch:var(--stretch);font-size:.88rem;opacity:.8}
-html[data-photos="tilted"] .photo{border-radius:3px;border:12px solid #fff;box-shadow:0 18px 40px rgba(0,0,0,.18);transform:rotate(-1.6deg)}
+.photo::before{content:"";position:absolute;inset:0;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.photo img{position:relative;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.photo:hover img{transform:scale(1.025)}
+.photo figcaption{position:absolute;left:18px;bottom:16px;right:18px;font-family:var(--display);font-stretch:var(--stretch);font-size:.8rem;opacity:.6}
+html[data-photos="tilted"] .photo{border-radius:3px;border:12px solid #fff;box-shadow:0 10px 24px rgba(0,0,0,.08);transform:rotate(-1.2deg)}
 html[data-photos="tilted"] .story .photo{transform:rotate(1.4deg)}
 
 /* ---- hero: 3 layouts ---- */
-.hero{padding:96px 0 104px;position:relative}
+.hero{padding:120px 0 128px;position:relative}
 .hero h1{font-size:clamp(3rem,7.4vw,6.2rem)}
 html[data-style="bold"] .hero h1{font-size:clamp(2.8rem,6vw,5.1rem)}
 .lead{font-size:1.22rem;color:var(--muted);max-width:34ch;margin-top:24px}
@@ -178,6 +183,11 @@ html[data-mode="dark"] .menu.cards h3,html[data-mode="dark"] .menu.list h3{color
 .gal .photo:nth-child(1){grid-column:span 2;grid-row:span 2}
 .gal .photo:nth-child(4),.gal .photo:nth-child(5),.gal .photo:nth-child(6){grid-column:span 2}
 
+.svc-price{font-family:var(--display);font-stretch:var(--stretch);color:var(--brand);font-size:.75em;margin-left:10px;white-space:nowrap}
+html[data-mode="dark"] .svc-price{color:var(--accent)}
+.areas h3{font-size:1.5rem}
+.areas ul{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.areas li{padding:10px 18px;border-radius:var(--r-btn);background:var(--paper);font-family:var(--display);font-stretch:var(--stretch)}
 /* story */
 .story .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:center}
 .story .photo{aspect-ratio:1/1}
@@ -199,6 +209,8 @@ html[data-mode="dark"] .hours div.is-today{color:var(--accent)}
 footer{padding:36px 0;font-family:var(--display);font-stretch:var(--stretch);font-size:.9rem;color:var(--muted)}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .mbar{display:none}
+.skip{position:absolute;left:12px;top:-60px;z-index:60;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:8px;text-decoration:none}
+.skip:focus{top:12px}
 
 /* ============ EFFECTS ============ */
 .cursor{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:2px solid var(--accent);border-radius:50%;pointer-events:none;z-index:99;opacity:0;transition:width .2s,height .2s,margin .2s,background .2s,opacity .3s}
@@ -232,13 +244,14 @@ html[data-hero="full"] .fx-intro .hero .photo[data-in]{translate:0 0}
 @media (max-width:700px){
   .nav a:not(.btn){display:none}
   .mbar{display:flex;gap:10px;position:fixed;left:12px;right:12px;bottom:12px;z-index:30}
-  .mbar .btn{flex:1;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+  .mbar .btn{flex:1;box-shadow:0 6px 16px rgba(0,0,0,.12)}
   body{padding-bottom:84px}
   .panel{display:none}
 }
 </style>
 </head>
 <body>
+<a class="skip" href="#top">Skip to content</a>
 <header class="awning" id="awning"><div class="wrap"><a href="#top" class="wordmark" id="wordmark"></a><nav class="nav" id="nav" aria-label="Main"></nav></div></header>
 <main id="top"></main>
 <footer><div class="wrap"><span id="copy"></span><span>Website by HamadaJR Media</span></div></footer>
@@ -264,6 +277,8 @@ html[data-hero="full"] .fx-intro .hero .photo[data-in]{translate:0 0}
     phone: "(519) 555-0142",
     address: "1240 Ottawa Street, Windsor",
     mapsQuery: "Ottawa Street Windsor ON",
+    kind: "storefront",       // storefront | service-area | appointment
+    bookingUrl: "", serviceAreas: [],
     hours: { 0: null, 1: [7,16], 2: [7,16], 3: [7,16], 4: [7,16], 5: [7,17], 6: [8,15] },
     ctaPrimary: "Get directions", ctaSecondary: { label: "See the menu", target: "menu" }
   },
@@ -299,15 +314,44 @@ html[data-hero="full"] .fx-intro .hero .photo[data-in]{translate:0 0}
   },
   preview: true    // false on live client sites
 };/*SITE_END*/
+/* Demo businesses for the preview panel only */
+const D0 = { design: { style: "", overrides: {}, colors: { brand: "", accent: "" } }, photos: { hero: "", story: "", gallery: [] }, menu: { title: "", intro: "", groups: [] }, preview: true };
+const DEMOS = {
+  cafe: structuredClone(SITE),
+  gym: { ...structuredClone(D0), design: { style: "street", overrides: { mode: "dark" }, colors: { brand: "", accent: "" } },
+    sections: ["services", "reviews", "gallery", "story", "visit"],
+    business: { name: "Ironline Fitness", kind: "storefront", headline: "Train hard. Get known by name.", lead: "A no-nonsense strength gym on Dougall Avenue with coaches who actually watch your form.", phone: "(519) 555-0177", address: "3120 Dougall Ave, Windsor", mapsQuery: "Dougall Ave Windsor ON", hours: { 0: [8,18], 1: [5,23], 2: [5,23], 3: [5,23], 4: [5,23], 5: [5,23], 6: [7,20] }, ctaPrimary: "Join today", ctaSecondary: { label: "See memberships", target: "services" } },
+    services: { title: "Memberships and classes", items: [["Open gym", "Full access to the racks, platforms and cardio whenever we're open.", "$49/mo"], ["Group strength", "Coached classes six days a week. Show up, we handle the plan.", "$69/mo"], ["Personal training", "One-on-one sessions with a program written around your goals.", "Ask us"]] },
+    reviews: { title: "What members say", rating: 4.9, count: 168, featured: { text: "Coaches remember your numbers and push you just enough.", name: "Jordan K." }, more: [{ text: "Cleanest gym in Windsor. Never waiting for a rack.", name: "Amira S." }, { text: "First gym where I actually stuck with it.", name: "Chris P." }] },
+    gallery: { title: "Inside the gym", captions: ["the main floor at 6 am", "racks lined up", "a coach spotting a lift", "group class mid-session", "the turf lane", "the front desk"] },
+    story: { title: "Built for people who want to get stronger.", paragraphs: ["Marcus opened Ironline after years of training in gyms where nobody knew his name.", "Here, coaches walk the floor, fix your form and remember your last PR."], owner: "Marcus, owner", photoCaption: "Marcus on the gym floor" },
+    visit: { title: "Come train with us" } },
+  barber: { ...structuredClone(D0), design: { style: "vintage", overrides: {}, colors: { brand: "", accent: "" } },
+    sections: ["services", "reviews", "gallery", "story", "visit"],
+    business: { name: "Lou's Barber Co.", kind: "appointment", bookingUrl: "https://example.com/book", headline: "Sharp cuts and a chair worth the wait.", lead: "An old-school barbershop on Wyandotte with hot towel finishes and barbers who know your usual.", phone: "(519) 555-0123", address: "1820 Wyandotte St E, Windsor", mapsQuery: "Wyandotte St E Windsor ON", hours: { 0: null, 1: null, 2: [10,19], 3: [10,19], 4: [10,20], 5: [9,20], 6: [9,17] }, ctaPrimary: "Book now", ctaSecondary: { label: "See prices", target: "services" } },
+    services: { title: "Cuts and prices", items: [["Classic cut", "Scissor or clipper, finished with a hot towel and a straight-razor neckline.", "$30"], ["Skin fade", "Clean, sharp and blended right down to the skin.", "$35"], ["Beard trim", "Shaped, lined up and finished with oil.", "$20"]] },
+    reviews: { title: "Word around the chair", rating: 4.9, count: 241, featured: { text: "Lou gave me the best fade I've had in years and remembered how I like it.", name: "Andre M." }, more: [{ text: "Hot towel finish is worth the trip alone.", name: "Sam D." }, { text: "Old-school shop, great conversation.", name: "Nick T." }] },
+    gallery: { title: "In the shop", captions: ["the chairs by the window", "a fresh fade", "the hot towel finish", "straight razor detail", "the waiting bench", "the sign out front"] },
+    story: { title: "Three chairs, no shortcuts.", paragraphs: ["Lou learned to cut hair from his uncle and opened the shop with the same rule: take your time, get it right.", "Most chairs are filled by regulars who've been coming for years."], owner: "Lou, owner", photoCaption: "Lou at his chair" },
+    visit: { title: "Grab a chair" } },
+  trades: { ...structuredClone(D0), design: { style: "bold", overrides: { hero: "split" }, colors: { brand: "#0F4C5C", accent: "#F4A259" } },
+    sections: ["services", "reviews", "gallery", "story", "visit"],
+    business: { name: "Northgate Heating & Cooling", kind: "service-area", serviceAreas: ["Windsor", "LaSalle", "Tecumseh", "Lakeshore", "Amherstburg"], headline: "Heat back on today, not next week.", lead: "Family-run furnace and AC repair across Windsor-Essex, with honest quotes before any work starts.", phone: "(519) 555-0199", address: "", mapsQuery: "", hours: { 0: null, 1: [8,18], 2: [8,18], 3: [8,18], 4: [8,18], 5: [8,18], 6: [9,14] }, ctaPrimary: "Get a quote", ctaSecondary: { label: "Our services", target: "services" } },
+    services: { title: "What we fix and install", items: [["Furnace repair", "Same-day visits when your heat goes out, with the price agreed before we start."], ["AC installation", "Sized properly for your home, so it cools evenly and runs quieter."], ["Maintenance plans", "Two tune-ups a year that catch problems before they become breakdowns."]] },
+    reviews: { title: "What homeowners say", rating: 4.8, count: 96, featured: { text: "Came out the same day in January and had our heat back on in an hour.", name: "Diane W." }, more: [{ text: "Quoted fair and stuck to it.", name: "Rob L." }, { text: "Cleaned up after themselves. Rare.", name: "Priya N." }] },
+    gallery: { title: "On the job", captions: ["a furnace install in progress", "the service van", "a tech checking the AC unit", "a finished install", "the team before a job", "a tidy basement after the job"] },
+    story: { title: "Started with one van and a promise.", paragraphs: ["Dave started Northgate after seeing too many homeowners overcharged for simple repairs.", "Every quote is given upfront, and every job is cleaned up before the truck leaves."], owner: "Dave, owner", photoCaption: "Dave beside the van" },
+    visit: { title: "Call us, we'll come to you" } }
+};
 
 /* Smart defaults: each style comes with a coherent look. The brain only overrides a few things. */
 const FX_ALL = { cursor:true, magnetic:true, intro:true, pulse:true };
 const DEFAULTS = {
-  warm:    { mode:"light", hero:"split",    photos:"rounded", buttons:"style", spacing:"normal",  reviews:"quote",  menu:"board", services:"list",  effects:{...FX_ALL} },
-  bold:    { mode:"light", hero:"full",     photos:"sharp",   buttons:"style", spacing:"normal",  reviews:"wall",   menu:"cards", services:"cards", effects:{...FX_ALL} },
+  warm:    { mode:"light", hero:"split",    photos:"rounded", buttons:"style", spacing:"normal",  reviews:"quote",  menu:"board", services:"list",  effects:{cursor:false,magnetic:false,intro:true,pulse:true} },
+  bold:    { mode:"light", hero:"full",     photos:"sharp",   buttons:"style", spacing:"normal",  reviews:"wall",   menu:"cards", services:"cards", effects:{cursor:false,magnetic:true,intro:true,pulse:true} },
   premium: { mode:"light", hero:"centered", photos:"sharp",   buttons:"style", spacing:"airy",    reviews:"quote",  menu:"list",  services:"list",  effects:{cursor:false,magnetic:false,intro:true,pulse:false} },
   vintage: { mode:"light", hero:"split",    photos:"tilted",  buttons:"style", spacing:"normal",  reviews:"wall",   menu:"board", services:"cards", effects:{cursor:false,magnetic:false,intro:true,pulse:true} },
-  minimal: { mode:"light", hero:"centered", photos:"sharp",   buttons:"style", spacing:"airy",    reviews:"quote",  menu:"list",  services:"list",  effects:{cursor:true,magnetic:false,intro:true,pulse:false} },
+  minimal: { mode:"light", hero:"centered", photos:"sharp",   buttons:"style", spacing:"airy",    reviews:"quote",  menu:"list",  services:"list",  effects:{cursor:false,magnetic:false,intro:true,pulse:false} },
   street:  { mode:"light", hero:"collage",  photos:"sharp",   buttons:"style", spacing:"compact", reviews:"ticker", menu:"cards", services:"cards", effects:{...FX_ALL} }
 };
 const cfg = () => { const d = DEFAULTS[SITE.design.style], o = SITE.design.overrides;
@@ -316,10 +360,15 @@ const cfg = () => { const d = DEFAULTS[SITE.design.style], o = SITE.design.overr
 /* ============================ BUILD ============================ */
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const B = SITE.business;
-const digits = B.phone.replace(/\D/g, "");
-const TEL = "tel:+" + (digits.length === 10 ? "1" + digits : digits);
-const MAPS = "https://maps.google.com/?q=" + encodeURIComponent(B.mapsQuery || B.address);
+let B, TEL, MAPS, KIND, PRIMARY;
+function links() {
+  B = SITE.business; KIND = B.kind || "storefront";
+  const digits = String(B.phone || "").replace(/\D/g, "");
+  TEL = "tel:+" + (digits.length === 10 ? "1" + digits : digits);
+  MAPS = "https://maps.google.com/?q=" + encodeURIComponent(B.mapsQuery || B.address || B.name);
+  PRIMARY = KIND === "service-area" ? TEL : KIND === "appointment" ? (B.bookingUrl || TEL) : MAPS;
+}
+links();
 const DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const fmt = h => { const hh = Math.floor(h), m = Math.round((h - hh) * 60); return (hh % 12 || 12) + (m ? ":" + String(m).padStart(2, "0") : "") + (hh < 12 ? " am" : " pm"); };
 const NAV = { menu: "Menu", services: "Services", gallery: "Gallery", story: "Our story", visit: "Visit" };
@@ -334,7 +383,7 @@ const R = {
       <h1 data-in style="--i:0">${esc(B.headline)}</h1>
       <p class="lead" data-in style="--i:1">${esc(B.lead)}</p>
       <p class="today" data-in style="--i:2"><span class="dot" id="dot"></span><span id="status"></span></p>
-      <div class="ctas" data-in style="--i:3"><a class="btn btn-brand" href="${MAPS}" target="_blank" rel="noopener">${esc(B.ctaPrimary)}</a>
+      <div class="ctas" data-in style="--i:3"><a class="btn btn-brand" href="${PRIMARY}" ${PRIMARY.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>${esc(B.ctaPrimary)}</a>
       ${SITE.sections.includes(B.ctaSecondary.target) ? `<a class="btn btn-line" href="#${B.ctaSecondary.target}">${esc(B.ctaSecondary.label)}</a>` : ""}</div>
     </div>${cfg().hero === "collage"
       ? `<div class="collage" data-in style="--i:1">${photo(SITE.photos.hero, "your space at its best")}${photo(G(0), SITE.gallery.captions[0])}${photo(G(1), SITE.gallery.captions[1])}</div>`
@@ -344,7 +393,7 @@ const R = {
     const rating = `<div class="rating"><span class="num">${r.rating}</span><span>stars from ${r.count} Google reviews</span></div>`;
     if (v === "ticker") { const items = all.map(q => `<span class="q">"${esc(q.text)}"<span>${esc(q.name)}</span></span>`).join("");
       return `<section class="ticker" aria-label="Customer reviews"><div class="track">${items}${items}</div></section><div class="ticker-rating"><div class="wrap">${rating}</div></div>`; }
-    if (v === "wall") return `<section class="reviews" aria-label="Customer reviews"><div class="wrap"><h2>What regulars say</h2>
+    if (v === "wall") return `<section class="reviews" aria-label="Customer reviews"><div class="wrap"><h2>${esc(r.title || "What regulars say")}</h2>
       <div class="wall">${all.map(q => `<blockquote><p>"${esc(q.text)}"</p><p class="who">${esc(q.name)}, Google review</p></blockquote>`).join("")}</div>${rating}</div></section>`;
     return `<section class="reviews" aria-label="Customer reviews"><div class="wrap"><div class="grid">
       <div><p class="stars" aria-label="5 out of 5 stars">★★★★★</p><p class="big-quote">"${esc(r.featured.text)}"</p><p class="who">${esc(r.featured.name)}, Google review</p></div>
@@ -360,8 +409,8 @@ const R = {
 
   services: () => { const s = SITE.services; return `<section class="services" id="services"><div class="wrap"><h2>${esc(s.title)}</h2>
     ${cfg().services === "cards"
-      ? `<div class="svc-cards">${s.items.map(([n,d]) => `<div class="svc-card"><h3>${esc(n)}</h3><p>${esc(d)}</p></div>`).join("")}</div>`
-      : `<div class="svc-list">${s.items.map(([n,d]) => `<div class="svc"><h3>${esc(n)}</h3><p>${esc(d)}</p></div>`).join("")}</div>`}</div></section>`; },
+      ? `<div class="svc-cards">${s.items.map(([n,d,pr]) => `<div class="svc-card"><h3>${esc(n)}${pr ? ` <span class="svc-price">${esc(pr)}</span>` : ""}</h3><p>${esc(d)}</p></div>`).join("")}</div>`
+      : `<div class="svc-list">${s.items.map(([n,d,pr]) => `<div class="svc"><h3>${esc(n)}${pr ? ` <span class="svc-price">${esc(pr)}</span>` : ""}</h3><p>${esc(d)}</p></div>`).join("")}</div>`}</div></section>`; },
 
   gallery: () => `<section class="gallery" id="gallery"><div class="wrap"><h2>${esc(SITE.gallery.title)}</h2>
     <div class="gal">${SITE.gallery.captions.map((c, i) => photo(G(i), c)).join("")}</div></div></section>`,
@@ -369,10 +418,10 @@ const R = {
   story: () => { const s = SITE.story; return `<section class="story" id="story"><div class="wrap">${photo(SITE.photos.story, s.photoCaption)}
     <div><h2>${esc(s.title)}</h2>${s.paragraphs.map(p => `<p>${esc(p)}</p>`).join("")}<p class="sign">${esc(s.owner)}</p></div></div></section>`; },
 
-  visit: () => `<section class="visit" id="visit"><div class="wrap"><div><h2>Come say hi.</h2>
-    <div class="contact-lines"><a href="${MAPS}" target="_blank" rel="noopener">${esc(B.address)}</a><a href="${TEL}">${esc(B.phone)}</a></div>
+  visit: () => `<section class="visit" id="visit"><div class="wrap"><div><h2>${esc((SITE.visit || {}).title || "Come say hi.")}</h2>
+    <div class="contact-lines">${KIND === "service-area" ? "" : `<a href="${MAPS}" target="_blank" rel="noopener">${esc(B.address)}</a>`}<a href="${TEL}">${esc(B.phone)}</a></div>
     <div class="hours" id="hours">${[1,2,3,4,5,6,0].map(d => `<div data-day="${d}"><span>${DAYS[d]}</span><span>${B.hours[d] ? fmt(B.hours[d][0]) + " – " + fmt(B.hours[d][1]) : "Closed"}</span></div>`).join("")}</div>
-    </div><iframe class="map" title="Map to ${esc(B.name)}" loading="lazy" src="https://www.google.com/maps?q=${encodeURIComponent(B.mapsQuery || B.address)}&output=embed"></iframe></div></section>`
+    </div>${KIND === "service-area" ? `<div class="areas"><h3>Areas we serve</h3><ul>${(B.serviceAreas || []).map(a => `<li>${esc(a)}</li>`).join("")}</ul></div>` : `<iframe class="map" title="Map to ${esc(B.name)}" loading="lazy" src="https://www.google.com/maps?q=${encodeURIComponent(B.mapsQuery || B.address)}&output=embed"></iframe>`}</div></section>`
 };
 
 function status() {
@@ -380,6 +429,7 @@ function status() {
   const d = now.getDay(), hr = now.getHours() + now.getMinutes() / 60, t = H[d];
   const row = document.querySelector(`#hours [data-day="${d}"]`); if (row) row.classList.add("is-today");
   const s = $("#status"), dot = $("#dot"); if (!s) return;
+  if (KIND === "service-area") { s.innerHTML = "<b>Serving</b> " + esc((B.serviceAreas || []).join(", ") || "Windsor-Essex"); return; }
   if (t && hr >= t[0] && hr < t[1]) { s.innerHTML = `<b>Open now</b>, closes at ${fmt(t[1])}`; return; }
   dot.classList.add("closed");
   if (t && hr < t[0]) { s.innerHTML = `<b>Closed</b>, opens today at ${fmt(t[0])}`; return; }
@@ -398,9 +448,10 @@ function applyDesign() {
 }
 
 function render() {
+  links();
   document.title = B.name; $("#wordmark").textContent = B.name; $("#copy").textContent = `© ${new Date().getFullYear()} ${B.name}`;
   $("#nav").innerHTML = SITE.sections.filter(s => NAV[s]).map(s => `<a href="#${s}">${NAV[s]}</a>`).join("") + `<a href="${TEL}" class="btn btn-accent">Call us</a>`;
-  $("#mbar").innerHTML = `<a class="btn btn-accent" href="${TEL}">Call</a><a class="btn btn-brand" href="${MAPS}" target="_blank" rel="noopener">Directions</a>`;
+  $("#mbar").innerHTML = `<a class="btn btn-accent" href="${TEL}">Call</a>` + (KIND === "storefront" ? `<a class="btn btn-brand" href="${MAPS}" target="_blank" rel="noopener">Directions</a>` : B.bookingUrl ? `<a class="btn btn-brand" href="${esc(B.bookingUrl)}" target="_blank" rel="noopener">Book</a>` : "");
   $("#top").innerHTML = R.hero() + SITE.sections.map(s => R[s] ? R[s]() : "").join("");
   status(); magnetize(); replayIntro();
 }
@@ -434,15 +485,17 @@ if (SITE.preview) {
     buttons:["style","pill","rounded","square"], spacing:["compact","normal","airy"], reviews:["quote","ticker","wall"], menu:["board","cards","list"], services:["list","cards"] };
   const SECS = ["reviews","menu","services","gallery","story","visit"];
   const p = document.createElement("details"); p.className = "panel"; p.open = true;
-  p.innerHTML = `<summary>Design settings</summary><div class="body"><h4>Style (resets to its smart defaults)</h4><div class="row">${Object.keys(DEFAULTS).map(v => `<button data-style="${v}">${v}</button>`).join("")}</div>` +
+  p.innerHTML = `<summary>Design settings</summary><div class="body"><h4>Demo business</h4><div class="row">${Object.keys(DEMOS).map(v => `<button data-demo="${v}">${v}</button>`).join("")}</div><h4>Style (resets to its smart defaults)</h4><div class="row">${Object.keys(DEFAULTS).map(v => `<button data-style="${v}">${v}</button>`).join("")}</div>` +
     Object.entries(opts).map(([k, vals]) => `<h4>${k[0].toUpperCase() + k.slice(1)}</h4><div class="row">${vals.map(v => `<button data-k="${k}" data-v="${v}">${v}</button>`).join("")}</div>`).join("") +
     `<h4>Sections</h4>${SECS.map(x => `<label><input type="checkbox" data-sec="${x}"> ${x}</label>`).join("")}<h4>Effects</h4>${Object.keys(FX_ALL).map(f => `<label><input type="checkbox" data-fx="${f}"> ${f}</label>`).join("")}</div>`;
   document.body.appendChild(p);
   const sync = () => { const C = cfg();
     p.querySelectorAll("[data-style]").forEach(b => b.setAttribute("aria-pressed", D.style === b.dataset.style));
     p.querySelectorAll("[data-k]").forEach(b => b.setAttribute("aria-pressed", C[b.dataset.k] === b.dataset.v));
-    p.querySelectorAll("[data-fx]").forEach(c => c.checked = C.effects[c.dataset.fx]); };
+    p.querySelectorAll("[data-fx]").forEach(c => c.checked = C.effects[c.dataset.fx]);
+    p.querySelectorAll("[data-sec]").forEach(c => c.checked = SITE.sections.includes(c.dataset.sec)); };
   const go = () => { applyDesign(); render(); sync(); };
+  p.querySelectorAll("[data-demo]").forEach(b => b.onclick = () => { Object.assign(SITE, structuredClone(DEMOS[b.dataset.demo])); SITE.preview = true; go(); });
   p.querySelectorAll("[data-style]").forEach(b => b.onclick = () => { D.style = b.dataset.style; D.overrides = {}; go(); });
   p.querySelectorAll("[data-k]").forEach(b => b.onclick = () => { D.overrides[b.dataset.k] = b.dataset.v; go(); });
   p.querySelectorAll("[data-sec]").forEach(c => { c.checked = SITE.sections.includes(c.dataset.sec);
