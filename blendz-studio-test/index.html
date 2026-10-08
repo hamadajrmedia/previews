@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blendz Studio TEST | Barbershop on Howard Ave, Windsor</title>
+<meta name="description" content="Blendz Studio is a Howard Ave barbershop in Windsor where fades come with designs, the music stays on, and the chairs are open until 8 pm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- DESIGN PLAN
+Subject world: A Windsor barbershop run by Jay, who started cutting for his basketball team. Clippers, mirrors, fades with freehand designs, kids in the chair, and speakers that never go quiet. Black and electric blue are the client's own colours. No barber pole.
+Palette: Ink #0B0E14 (page), Panel #121826 (surfaces), Line #26304B (borders), Chalk #EEF2FA (text), Mist #A7B2C8 (muted text), Electric Blue #3D7BFF (the one accent, brighter than a stock blue so dark labels pass AA).
+Type: Anton for headlines, prices and brand (tall, loud, condensed like a poster on a speaker stack). Rubik for body and buttons.
+Layout concept: Hero is a left-aligned headline over a huge speaker cone (concentric blue rings) cropped off the right edge. Services is a ruled price board. Gallery is a 4-column mosaic of speaker-grille photo slots. Story is a full-bleed electric blue band with a single-column read. Visit is a map split with a hours table that marks today.
+The ONE memorable move: the speaker. The cone rings ripple out once on load, and the same perforated speaker-grille dot texture becomes every photo slot.
+Generic check: A lazy barbershop site is black and gold with a barber pole, scissors icons and a serif logo. This one drops the pole and the heritage look, and takes its texture from the thing that is actually always on in the shop: the speakers.
+-->
+<!-- SIGNATURE: Speaker cone | Anton + Rubik | #0B0E14, #3D7BFF | headline left with concentric speaker cone cropped off the right edge | speaker-grille dotted photo slots and one-time cone ripple on load -->
+<style>
+:root{
+  --ink:#0B0E14;
+  --panel:#121826;
+  --panel2:#0F1730;
+  --line:#26304B;
+  --text:#EEF2FA;
+  --muted:#A7B2C8;
+  --blue:#3D7BFF;
+  --blue-hi:#5C91FF;
+  --blue-deep:#1A3C8F;
+  --focus:#CFE0FF;
+  --r:6px;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s6:48px;--s8:64px;--s12:96px;--s16:128px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --pad:clamp(64px,10vw,128px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--ink);color:var(--text);font-family:'Rubik',sans-serif;font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Anton',sans-serif;font-weight:400;line-height:1.08;margin:0;letter-spacing:.01em}
+h2{font-size:clamp(2.25rem,5vw,3.5rem)}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:var(--r)}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 var(--s3)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 var(--s4);border-radius:var(--r);font-family:'Rubik',sans-serif;font-weight:600;font-size:1rem;text-decoration:none;white-space:nowrap;border:2px solid transparent;cursor:pointer;transition:transform .12s var(--ease),box-shadow .12s var(--ease),background-color .15s,border-color .15s}
+.btn-primary{background:var(--blue);color:var(--ink);box-shadow:0 4px 0 var(--blue-deep)}
+.btn-primary:hover{background:var(--blue-hi)}
+.btn-primary:active{transform:translateY(3px);box-shadow:0 1px 0 var(--blue-deep)}
+.btn-ghost{border-color:var(--line);color:var(--text);background:transparent}
+.btn-ghost:hover{border-color:var(--blue);background:var(--panel)}
+.btn-ghost:active{transform:translateY(2px)}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:var(--ink);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:var(--s1);height:68px}
+.brand{font-family:'Anton',sans-serif;font-size:1.125rem;text-decoration:none;letter-spacing:.02em;white-space:nowrap;margin-right:auto}
+.nav-links{display:none;gap:var(--s4);list-style:none;margin:0 var(--s3) 0 0;padding:0}
+.nav-links a{text-decoration:none;color:var(--muted);font-weight:500;font-size:.9375rem}
+.nav-links a:hover{color:var(--text)}
+.nav-phone{display:none;text-decoration:none;font-weight:500;margin-right:var(--s2);white-space:nowrap}
+.nav-phone:hover{color:var(--blue)}
+.nav .btn{min-height:44px;padding:0 var(--s2);font-size:.9375rem}
+.menu-btn{width:44px;height:44px;border:1px solid var(--line);background:var(--panel);border-radius:var(--r);display:grid;place-content:center;gap:5px;cursor:pointer;padding:0}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--text)}
+.mobile-panel{display:none;background:var(--panel);border-bottom:1px solid var(--line)}
+.mobile-panel.open{display:block}
+.mobile-panel ul{list-style:none;margin:0;padding:var(--s1) var(--s3) var(--s3)}
+.mobile-panel a{display:block;padding:var(--s2) 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:500}
+@media(min-width:1024px){
+  .nav-links{display:flex}
+  .nav-phone{display:block}
+  .menu-btn{display:none}
+  .mobile-panel,.mobile-panel.open{display:none}
+  .brand{font-size:1.5rem}
+  .nav .btn{padding:0 var(--s3)}
+}
+
+/* hero */
+.hero{position:relative;overflow:hidden;min-height:calc(100dvh - 68px);display:flex;align-items:center;padding:var(--s8) 0 var(--s12)}
+.hero .wrap{position:relative;z-index:2}
+.hero h1{font-size:clamp(1.875rem,8.6vw,6rem);line-height:1.05;max-width:100%}
+.hero h1 span{display:block}
+.hero .sub{margin-top:var(--s3);max-width:46ch;font-size:1.125rem;color:var(--muted)}
+.hero .btns{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s4)}
+.cone{position:absolute;z-index:1;right:-38vw;top:50%;width:min(110vw,760px);aspect-ratio:1;transform:translateY(-50%);pointer-events:none;opacity:.3}
+.cone i,.cone b{position:absolute;border-radius:50%;display:block}
+.cone i{border:2px solid var(--blue);opacity:var(--o)}
+.cone i:nth-child(1){inset:0;--o:.9;background:var(--panel)}
+.cone i:nth-child(2){inset:11%;--o:.7}
+.cone i:nth-child(3){inset:22%;--o:.55}
+.cone i:nth-child(4){inset:33%;--o:.4}
+.cone b{inset:42%;background:var(--blue);opacity:1}
+@media(min-width:768px){.cone{right:-12vw;opacity:.35}}
+@media(min-width:1280px){.cone{right:-160px;opacity:1}}
+.rise{animation:rise .9s var(--ease) both}
+.rise.d1{animation-delay:.12s}.rise.d2{animation-delay:.24s}
+.cone i{animation:ring 1.2s var(--ease) both}
+.cone i:nth-child(1){animation-delay:.05s}
+.cone i:nth-child(2){animation-delay:.18s}
+.cone i:nth-child(3){animation-delay:.31s}
+.cone i:nth-child(4){animation-delay:.44s}
+.cone b{animation:cap 1s var(--ease) .55s both}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes ring{from{opacity:0;transform:scale(.6)}to{opacity:var(--o);transform:none}}
+@keyframes cap{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  .rise,.cone i,.cone b{animation:none}
+  html{scroll-behavior:auto}
+  .btn{transition:none}
+}
+
+/* sections */
+section{padding:var(--pad) 0}
+.sec-head{margin-bottom:var(--s8)}
+
+/* services: ruled price board */
+#services{background:var(--ink);border-top:1px solid var(--line)}
+.board{list-style:none;margin:0;padding:0;border-top:2px solid var(--text)}
+.board li{display:grid;grid-template-columns:1fr;gap:var(--s1);padding:var(--s4) 0;border-bottom:1px solid var(--line)}
+.board h3{font-size:clamp(1.75rem,3.4vw,2.5rem)}
+.board p{color:var(--muted);max-width:52ch}
+.board .price{font-family:'Anton',sans-serif;font-size:clamp(2rem,4vw,3rem);line-height:1;color:var(--blue)}
+@media(min-width:768px){
+  .board li{grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr) 120px;gap:var(--s6);align-items:center;padding:var(--s4) var(--s2)}
+  .board li:hover{background:var(--panel)}
+  .board .price{text-align:right}
+}
+
+/* photo slots */
+.slot{position:relative;display:flex;flex-direction:column;justify-content:flex-end;margin:0;min-height:220px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background-color:var(--panel);background-image:radial-gradient(circle,rgba(61,123,255,.32) 1.6px,transparent 2.2px);background-size:14px 14px}
+.slot.g2{background-color:var(--panel2);background-size:20px 20px;background-position:10px 10px}
+.slot.g3{background-color:#151B2C;background-size:11px 11px}
+.slot figcaption{background:var(--ink);border-top:1px solid var(--line);padding:var(--s2);font-size:.875rem;line-height:1.5;color:var(--muted)}
+.slot figcaption strong{color:var(--text);font-weight:500}
+
+/* gallery: mosaic */
+#gallery{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mosaic{display:grid;grid-template-columns:1fr;gap:var(--s2)}
+@media(min-width:768px){
+  .mosaic{grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(230px,auto)}
+  .m1{grid-column:span 2;grid-row:span 2}
+  .m4,.m5,.m6{grid-column:span 2}
+  .m1{min-height:476px}
+}
+
+/* story: full-bleed blue band, single column */
+#story{background:var(--blue);color:var(--ink)}
+#story :focus-visible{outline-color:var(--ink)}
+#story .col{max-width:760px}
+#story h2{margin-bottom:var(--s6)}
+#story .slot{aspect-ratio:21/9;min-height:200px;margin-bottom:var(--s6);border-color:var(--ink);background-color:var(--ink);background-image:radial-gradient(circle,rgba(61,123,255,.5) 1.6px,transparent 2.2px)}
+#story .slot figcaption{color:var(--muted)}
+#story .text p{max-width:62ch}
+#story .text p+p{margin-top:var(--s3)}
+#story .text p:first-child{font-size:1.25rem;line-height:1.55;font-weight:500}
+
+/* visit: map split */
+.visit{display:grid;grid-template-columns:1fr;gap:var(--s6)}
+@media(min-width:768px){.visit{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:var(--s8);align-items:stretch}}
+.visit address{font-style:normal;font-size:1.25rem;margin-top:var(--s4)}
+.contact{margin-top:var(--s2);display:flex;flex-direction:column;gap:4px}
+.contact a{color:var(--text);text-underline-offset:4px;text-decoration-color:var(--blue)}
+.contact a:hover{color:var(--blue)}
+.hours{margin:var(--s4) 0;padding:0;list-style:none;border-top:1px solid var(--line);max-width:420px}
+.hours li{display:flex;justify-content:space-between;gap:var(--s2);padding:var(--s1) var(--s2);border-bottom:1px solid var(--line);color:var(--muted);border-left:3px solid transparent}
+.hours li.today{color:var(--text);font-weight:500;border-left-color:var(--blue);background:var(--panel)}
+.map{min-height:360px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--panel)}
+.map iframe{display:block;width:100%;height:100%;min-height:360px;border:0}
+
+/* footer */
+footer{background:var(--panel);border-top:1px solid var(--line);padding:var(--s8) 0 var(--s4)}
+.foot{display:grid;grid-template-columns:1fr;gap:var(--s4)}
+@media(min-width:768px){.foot{grid-template-columns:1.2fr 1fr 1fr}}
+footer .name{font-family:'Anton',sans-serif;font-size:1.75rem;margin-bottom:var(--s2)}
+footer p,footer a{color:var(--muted)}
+footer a{text-underline-offset:4px}
+footer a:hover{color:var(--text)}
+footer .btn{margin-top:var(--s3);color:var(--ink)}
+footer .btn:hover{color:var(--ink)}
+footer .gap{margin-top:var(--s2)}
+.credit{margin-top:var(--s6);padding-top:var(--s3);border-top:1px solid var(--line);font-size:.875rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">Blendz Studio TEST</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <a class="nav-phone" href="tel:5195550193">519-555-0193</a>
+    <a class="btn btn-primary" href="mailto:book@blendzstudio.ca?subject=Book%20now">Book now</a>
+    <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mpanel"><span></span><span></span></button>
+  </div>
+  <nav class="mobile-panel" id="mpanel" aria-label="Mobile">
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#visit">Visit</a></li>
+      <li><a href="tel:5195550193">Call 519-555-0193</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="cone" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></div>
+    <div class="wrap">
+      <h1 class="rise"><span>Crispy designs,</span> <span>loud music, open late</span></h1>
+      <p class="sub rise d1">A Howard Ave barbershop in Windsor where fades come with designs and the chairs stay open until 8 pm.</p>
+      <div class="btns rise d2">
+        <a class="btn btn-primary" href="mailto:book@blendzstudio.ca?subject=Book%20now">Book now</a>
+        <a class="btn btn-ghost" href="tel:5195550193">Call the shop</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="services" aria-labelledby="services-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="services-h">Pick your cut</h2></div>
+      <ul class="board">
+        <li>
+          <h3>Fade + design</h3>
+          <p>A clean fade with a custom design cut in. Sharp lines, a detailed finish, and a look people ask you about.</p>
+          <span class="price">$45</span>
+        </li>
+        <li>
+          <h3>Kids fade</h3>
+          <p>A proper fade for the little ones, done with patience while the music plays. They leave looking sharp and feeling like a big deal.</p>
+          <span class="price">$25</span>
+        </li>
+        <li>
+          <h3>Line up</h3>
+          <p>Crisp edges along the hairline and temples. It's the quickest way to look fresh between full cuts.</p>
+          <span class="price">$15</span>
+        </li>
+        <li>
+          <h3>Beard + fade combo</h3>
+          <p>Fade up top, beard shaped to match. One chair, one sitting, and everything lines up from head to jaw.</p>
+          <span class="price">$50</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="gallery" aria-labelledby="gallery-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="gallery-h">Fresh out the chair</h2></div>
+      <div class="mosaic">
+        <figure class="slot m1"><figcaption><strong>Photo to shoot:</strong> Close-up of a fade with a freehand design, shot from the side under good light</figcaption></figure>
+        <figure class="slot g2 m2"><figcaption><strong>Photo to shoot:</strong> Jay at his station mid-cut, clippers in hand, speaker or music setup visible behind him</figcaption></figure>
+        <figure class="slot g3 m3"><figcaption><strong>Photo to shoot:</strong> Back-of-head shot of a finished fade with the client's head turned slightly to show the blend</figcaption></figure>
+        <figure class="slot g3 m4"><figcaption><strong>Photo to shoot:</strong> Wide shot of the shop interior with all chairs, mirrors and lighting</figcaption></figure>
+        <figure class="slot m5"><figcaption><strong>Photo to shoot:</strong> A kid in the chair getting a fade, with a big grin in the mirror</figcaption></figure>
+        <figure class="slot g2 m6"><figcaption><strong>Photo to shoot:</strong> Line up and beard detail, tight shot of crisp edges after the final pass</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" aria-labelledby="story-h">
+    <div class="wrap">
+      <div class="col">
+        <h2 id="story-h">From the team bench to the chair</h2>
+        <figure class="slot"><figcaption><strong>Photo to shoot:</strong> Jay at his chair, getting a client ready for the mirror reveal</figcaption></figure>
+        <div class="text">
+          <p>Jay started out cutting hair for his basketball team. Nobody was paying for a fancy shop. Teammates sat down, he picked up the clippers, and word got around.</p>
+          <p>Cutting for the team showed him what a good cut does for a person. It's confidence before the game, before the night out, before Monday. So he built it into a studio, and what he cared about most was the culture.</p>
+          <p>That's why Blendz Studio sounds the way it does. The music is always on, the designs are crispy, and the hours run late so you can get fresh after work or school. Come in for the cut and stay for the vibe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" aria-labelledby="visit-h">
+    <div class="wrap visit">
+      <div>
+        <h2 id="visit-h">Pull up on Howard Ave</h2>
+        <address>3100 Howard Ave, Windsor, ON</address>
+        <div class="contact">
+          <a href="tel:5195550193">519-555-0193</a>
+          <a href="mailto:book@blendzstudio.ca">book@blendzstudio.ca</a>
+        </div>
+        <ul class="hours" aria-label="Opening hours">
+          <li data-day="1"><span>Monday</span><span>10 am to 8 pm</span></li>
+          <li data-day="2"><span>Tuesday</span><span>10 am to 8 pm</span></li>
+          <li data-day="3"><span>Wednesday</span><span>10 am to 8 pm</span></li>
+          <li data-day="4"><span>Thursday</span><span>10 am to 8 pm</span></li>
+          <li data-day="5"><span>Friday</span><span>10 am to 8 pm</span></li>
+          <li data-day="6"><span>Saturday</span><span>10 am to 8 pm</span></li>
+          <li data-day="0"><span>Sunday</span><span>11 am to 4 pm</span></li>
+        </ul>
+        <a class="btn btn-primary" href="mailto:book@blendzstudio.ca?subject=Book%20now">Book now</a>
+      </div>
+      <div class="map">
+        <iframe title="Map to Blendz Studio, 3100 Howard Ave, Windsor" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Blendz%20Studio%2C%203100%20Howard%20Ave%2C%20Windsor%2C%20ON&amp;output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="name">Blendz Studio TEST</div>
+        <p>3100 Howard Ave, Windsor, ON</p>
+        <p><a href="tel:5195550193">519-555-0193</a></p>
+        <a class="btn btn-primary" href="mailto:book@blendzstudio.ca?subject=Book%20now">Book now</a>
+      </div>
+      <div>
+        <p>Monday to Saturday<br>10 am to 8 pm</p>
+        <p class="gap">Sunday<br>11 am to 4 pm</p>
+      </div>
+      <div>
+        <p><a href="#services">Services</a></p>
+        <p><a href="#gallery">Gallery</a></p>
+        <p><a href="#story">Story</a></p>
+        <p><a href="#visit">Visit</a></p>
+      </div>
+    </div>
+    <p class="credit">Site by HamadaJR Media</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.querySelector('.menu-btn'),panel=document.getElementById('mpanel');
+  btn.addEventListener('click',function(){
+    var open=panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open);
+    btn.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+  panel.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){panel.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+  });
+  var d=String(new Date().getDay());
+  var li=document.querySelector('.hours li[data-day="'+d+'"]');
+  if(li){
+    li.classList.add('today');
+    var s=document.createElement('span');s.className='sr';s.textContent=' (today)';
+    li.firstElementChild.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>
