@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Old Walkerville Barber | Hot towel shaves and classic cuts in Windsor</title>
+<meta name="description" content="Old-school barbering on Wyandotte Street East in Windsor. Classic cuts and straight razor shaves finished with a hot towel.">
+<meta name="theme-color" content="#0D2B21">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- DESIGN PLAN
+Subject world: A Walkerville barbershop run by Tony in his grandfather's chairs. Bottle-green enamel and brass fittings on the chairs, hot towels, a straight razor and brush on the counter, old tile floor, a wall of framed old photos that customers read while they wait. Wyandotte Street East in Windsor.
+Palette: Barbershop Green #0D2B21 (page), Chair Enamel #133629 (raised bands and boards), Back Bar #081C14 (footer), Tile Line #25563F (rules and borders), Brass #C9A24D (the one accent, with a lighter hover #DDB963), Towel White #EEF2EC (text), Pale Sage #A8BCB0 (secondary text). No cream, no beige, no pure black.
+Type: Libre Caslon Display for headlines, prices and the shop name (a heritage trade with a grandfather's name on the story, so a classic display serif is justified, like old shop-window lettering). Libre Franklin for body, buttons and captions.
+Layout concept: Hero is a full-width two-line headline over a row of lead text and buttons beside a brass-framed photo slot. Services is a centred price board with dotted leaders. Gallery is a salon-hung mosaic of framed photos in mixed sizes. Story is a single-column read under one wide framed photo on a lighter band. Visit is a map split with ruled hours.
+The ONE memorable move: Every photo slot is a brass picture frame with a mat and a caption plaque, hung like the wall of old photos in the shop. The slots are filled with tile-floor, pinstripe and herringbone patterns drawn from the palette.
+Generic check: A lazy designer would do a cream page with a red, white and blue pole stripe, a script logo and a black-and-gold "premium grooming" look with glowing buttons. This one is deep bottle green with brass, flat and quiet as the owner asked, with nothing flashy, and its character comes from the picture-frame wall instead of barber-pole clichés.
+-->
+<!-- SIGNATURE: Brass picture-frame photo wall | Libre Caslon Display + Libre Franklin | #0D2B21, accent #C9A24D | headline over split row (lead and buttons beside framed photo slot) | brass picture frames with mat and caption plaque for every photo slot, hung like the shop's wall of old photos -->
+
+<style>
+:root{
+  --green-950:#081C14;
+  --green-900:#0D2B21;
+  --green-800:#133629;
+  --green-600:#25563F;
+  --brass:#C9A24D;
+  --brass-hi:#DDB963;
+  --paper:#EEF2EC;
+  --muted:#A8BCB0;
+  --shadow:rgba(3,14,9,.55);
+  --r:2px;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--s6:64px;--s7:96px;--s8:128px;
+  --ease:cubic-bezier(.2,.75,.15,1);
+  --serif:"Libre Caslon Display",Georgia,serif;
+  --sans:"Libre Franklin",system-ui,sans-serif;
+  --nav-h:68px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--green-900);color:var(--paper);font-family:var(--sans);font-size:1.0625rem;line-height:1.6}
+img,iframe{max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0}
+h1{font-size:clamp(1.625rem,.9rem + 3.8vw,4.25rem);line-height:1.08;letter-spacing:-.005em}
+h2{font-size:clamp(1.9rem,1.2rem + 2.4vw,3.05rem);line-height:1.1}
+h3{font-size:1.5625rem;line-height:1.15}
+p{margin:0}
+.wrap{width:min(1120px,100% - 48px);margin-inline:auto}
+section[id]{scroll-margin-top:var(--nav-h)}
+.sec{padding:var(--s6) 0}
+@media(min-width:768px){.sec{padding:var(--s8) 0}}
+:focus-visible{outline:2px solid var(--brass-hi);outline-offset:3px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 24px;border-radius:var(--r);border:1px solid var(--brass);font-family:var(--sans);font-weight:600;font-size:.9375rem;letter-spacing:.02em;text-decoration:none;white-space:nowrap;cursor:pointer;transition:transform .18s var(--ease),background-color .18s,box-shadow .18s}
+.btn-p{background:var(--brass);color:var(--green-950)}
+.btn-p:hover{background:var(--brass-hi);transform:translateY(-1px);box-shadow:0 8px 18px -8px var(--shadow)}
+.btn-s{background:transparent;color:var(--paper)}
+.btn-s:hover{background:var(--green-800);transform:translateY(-1px)}
+.btn:active{transform:translateY(1px) scale(.98);box-shadow:none}
+.btn-sm{min-height:44px;padding:8px 20px}
+.btns{display:flex;flex-wrap:wrap;gap:var(--s2)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(13,43,33,.96);border-bottom:1px solid var(--green-600);backdrop-filter:blur(6px)}
+.nav-in{width:min(1120px,100% - 48px);margin-inline:auto;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:var(--s3)}
+.brand{font-family:var(--serif);font-size:1.25rem;line-height:1;text-decoration:none;white-space:nowrap}
+.links{list-style:none;margin:0;padding:0}
+.links a{text-decoration:none}
+.links a:not(.btn){display:block;padding:8px 0;color:var(--paper)}
+.links a:not(.btn):hover{color:var(--brass-hi)}
+.actions{display:none;align-items:center;gap:var(--s3)}
+.tel{font-weight:500;text-decoration:none;white-space:nowrap}
+.tel:hover{color:var(--brass-hi)}
+.menu-btn{min-height:44px;padding:8px 18px;background:transparent;color:var(--paper);border:1px solid var(--brass);border-radius:var(--r);font:600 .9375rem var(--sans);cursor:pointer}
+.menu-btn:active{transform:scale(.97)}
+.links{display:none;position:absolute;left:0;right:0;top:var(--nav-h);background:var(--green-900);border-bottom:1px solid var(--green-600);padding:var(--s2) 24px var(--s3);box-shadow:0 18px 24px -16px var(--shadow)}
+.links.open{display:block}
+.links li{border-bottom:1px solid var(--green-600)}
+.links li.m{border-bottom:0;padding-top:var(--s2)}
+.links li.m .btn{width:100%}
+@media(min-width:1040px){
+  .menu-btn{display:none}
+  .links{display:flex;position:static;background:none;border:0;padding:0;box-shadow:none;gap:var(--s4)}
+  .links li{border:0}
+  .links li.m{display:none}
+  .actions{display:flex}
+}
+
+/* frames: the memorable move */
+.frame{margin:0;display:flex;flex-direction:column;background:var(--mat,var(--green-800));border:2px solid var(--brass);border-radius:var(--r);padding:10px;box-shadow:0 18px 32px -16px var(--shadow)}
+.pic{flex:1 1 auto;min-height:180px;border:1px solid var(--green-600)}
+.frame figcaption{padding:12px 4px 4px;font-size:.8125rem;line-height:1.5;color:var(--muted);max-width:62ch}
+.frame figcaption span{color:var(--brass);font-weight:600}
+.p1{background:repeating-linear-gradient(135deg,rgba(201,162,77,.14) 0 1px,transparent 1px 14px),linear-gradient(160deg,#18432F,#0F3025)}
+.p2{background:conic-gradient(#173F2E 25%,#113024 0 50%,#173F2E 0 75%,#113024 0) 0 0/36px 36px}
+.p3{background:repeating-linear-gradient(90deg,#163D2C 0 20px,#112F24 20px 40px)}
+.p4{background:radial-gradient(rgba(201,162,77,.28) 1.2px,transparent 1.8px) 0 0/16px 16px,#123226}
+.p5{background:repeating-linear-gradient(45deg,rgba(201,162,77,.12) 0 2px,transparent 2px 12px),repeating-linear-gradient(-45deg,rgba(238,242,236,.05) 0 2px,transparent 2px 12px),#123428}
+.p6{background:repeating-linear-gradient(45deg,#163D2C 0 10px,#112F24 10px 20px),#123226;background-blend-mode:normal}
+
+/* hero */
+.hero{min-height:calc(100dvh - var(--nav-h));display:flex;align-items:center;padding:var(--s5) 0 var(--s6)}
+.hero h1{max-width:15em;text-wrap:balance;margin-bottom:var(--s4)}
+.hero-row{display:grid;gap:var(--s4);align-items:end}
+.lead{font-size:1.1875rem;max-width:44ch;color:var(--paper);margin-bottom:var(--s3)}
+.callline{margin-top:var(--s3);color:var(--muted);font-size:.9375rem}
+.callline a{color:var(--paper);font-weight:500}
+.callline a:hover{color:var(--brass-hi)}
+@media(min-width:768px){
+  .hero-row{grid-template-columns:1fr 1fr;gap:var(--s6)}
+  .hero .pic{min-height:220px}
+}
+.rise{animation:rise .9s var(--ease) both}
+.rise.d1{animation-delay:.12s}
+.rise.d2{animation-delay:.26s}
+.rise.d3{animation-delay:.4s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* services board */
+.services{background:var(--green-800)}
+.board{max-width:860px;margin-inline:auto;background:var(--green-900);border:2px solid var(--brass);border-radius:var(--r);padding:clamp(24px,5vw,56px);box-shadow:0 24px 40px -22px var(--shadow)}
+.board h2{text-align:center;margin-bottom:var(--s5)}
+.row{display:grid;grid-template-columns:auto 1fr auto;column-gap:var(--s2);align-items:baseline;padding:var(--s3) 0;border-top:1px solid var(--green-600)}
+.row:first-of-type{border-top:0;padding-top:0}
+.leader{align-self:end;height:1px;margin-bottom:.5em;border-bottom:2px dotted rgba(201,162,77,.5)}
+.price{font-family:var(--serif);font-size:1.5625rem;line-height:1;color:var(--brass)}
+.row p{grid-column:1 / -1;margin-top:var(--s1);color:var(--muted);max-width:56ch}
+.board .btns{margin-top:var(--s4);justify-content:center}
+
+/* gallery mosaic */
+.gallery h2{max-width:20ch;margin-bottom:var(--s5);text-wrap:balance}
+.mosaic{display:grid;gap:var(--s3)}
+.mosaic .frame{--mat:var(--green-800)}
+@media(min-width:768px){
+  .mosaic{grid-template-columns:repeat(6,1fr)}
+  .g1{grid-column:1 / 5;grid-row:1 / 3}
+  .g2{grid-column:5 / 7;grid-row:1}
+  .g3{grid-column:5 / 7;grid-row:2}
+  .g4{grid-column:1 / 4;grid-row:3}
+  .g5{grid-column:4 / 7;grid-row:3}
+}
+
+/* story */
+.story{background:var(--green-800)}
+.story .frame{--mat:var(--green-900)}
+.story h2{text-align:center;max-width:22ch;margin:0 auto var(--s5);text-wrap:balance}
+.story .pic{min-height:220px}
+@media(min-width:768px){.story .pic{min-height:320px}}
+.prose{max-width:62ch;margin:var(--s6) auto 0}
+.prose p+p{margin-top:var(--s3)}
+.prose p{color:var(--muted)}
+.prose p:first-child{font-size:1.25rem;line-height:1.6;color:var(--paper)}
+
+/* visit */
+.visit-grid{display:grid;gap:var(--s5)}
+.visit h2{margin-bottom:var(--s4);text-wrap:balance}
+address{font-style:normal;font-size:1.1875rem;margin-bottom:var(--s1)}
+.big-tel{display:inline-block;font-family:var(--serif);font-size:1.9531rem;line-height:1.2;text-decoration:none;color:var(--brass);margin-bottom:var(--s4)}
+.big-tel:hover{color:var(--brass-hi)}
+.hours{margin:0 0 var(--s4);border-top:1px solid var(--green-600)}
+.hours div{display:flex;justify-content:space-between;gap:var(--s2);padding:var(--s2) 0;border-bottom:1px solid var(--green-600)}
+.hours dt{color:var(--muted)}
+.hours dd{margin:0;font-weight:500;text-align:right}
+.map{border:2px solid var(--brass);border-radius:var(--r);padding:10px;background:var(--green-800);box-shadow:0 18px 32px -16px var(--shadow)}
+.map iframe{display:block;width:100%;height:100%;min-height:340px;border:1px solid var(--green-600);border-radius:var(--r)}
+@media(min-width:768px){
+  .visit-grid{grid-template-columns:1fr 1.1fr;gap:var(--s6);align-items:stretch}
+  .map iframe{min-height:480px}
+}
+
+/* footer */
+footer{background:var(--green-950);border-top:1px solid var(--green-600);padding:var(--s6) 0 var(--s4)}
+.foot{display:grid;gap:var(--s4)}
+.foot h2{font-size:1.5625rem;margin-bottom:var(--s1)}
+.foot p{color:var(--muted);font-size:.9375rem}
+.foot a:not(.btn){color:var(--paper)}
+.foot a:not(.btn):hover{color:var(--brass-hi)}
+.credit{margin-top:var(--s5);padding-top:var(--s3);border-top:1px solid var(--green-600);font-size:.8125rem;color:var(--muted)}
+@media(min-width:768px){.foot{grid-template-columns:1.2fr 1fr 1fr auto;align-items:start;gap:var(--s5)}}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rise{animation:none}
+  .btn,.menu-btn{transition:none}
+}
+</style>
+</head>
+<body id="top">
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">Old Walkerville Barber</a>
+    <nav aria-label="Primary">
+      <ul class="links" id="menu">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#visit">Visit</a></li>
+        <li class="m"><a class="tel" href="tel:+15195550177">519-555-0177</a></li>
+        <li class="m"><a class="btn btn-p" href="tel:+15195550177">Book now</a></li>
+      </ul>
+    </nav>
+    <div class="actions">
+      <a class="tel" href="tel:+15195550177">519-555-0177</a>
+      <a class="btn btn-p btn-sm" href="tel:+15195550177">Book now</a>
+    </div>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap">
+      <h1 id="h1" class="rise">Hot towel shaves in Tony’s grandfather’s chairs</h1>
+      <div class="hero-row">
+        <div class="rise d1">
+          <p class="lead">Old-school barbering on Wyandotte Street East in Windsor. Classic cuts and straight razor shaves finished with a hot towel.</p>
+          <div class="btns">
+            <a class="btn btn-p" href="tel:+15195550177">Book now</a>
+            <a class="btn btn-s" href="#visit">Get directions</a>
+          </div>
+          <p class="callline">Or call <a href="tel:+15195550177">519-555-0177</a></p>
+        </div>
+        <figure class="frame rise d2">
+          <div class="pic p1" role="img" aria-label="Photo placeholder"></div>
+          <figcaption><span>Photo to shoot:</span> Close-up of the original chairs Tony’s grandfather used, with the green and brass details in frame</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec services" id="services" aria-labelledby="services-h">
+    <div class="wrap">
+      <div class="board">
+        <h2 id="services-h">The chair is ready</h2>
+        <div class="row">
+          <h3>Classic cut</h3><span class="leader" aria-hidden="true"></span><span class="price">$30</span>
+          <p>A proper barbershop haircut: clean lines, a tidy neckline and a finish that still looks sharp days later. The kind of cut that never goes out of style.</p>
+        </div>
+        <div class="row">
+          <h3>Straight razor shave</h3><span class="leader" aria-hidden="true"></span><span class="price">$45</span>
+          <p>Hot towels, warm lather and a real straight razor. Slow, close and calming, and the reason a lot of regulars keep coming back.</p>
+        </div>
+        <div class="row">
+          <h3>Beard sculpt</h3><span class="leader" aria-hidden="true"></span><span class="price">$25</span>
+          <p>Your beard shaped to suit your face, with crisp edges and a neat finish. Leave with it looking intentional, not just trimmed.</p>
+        </div>
+        <div class="row">
+          <h3>Senior cut</h3><span class="leader" aria-hidden="true"></span><span class="price">$22</span>
+          <p>The same careful, classic cut at a friendlier price. Sit down, relax and enjoy the conversation.</p>
+        </div>
+        <div class="btns"><a class="btn btn-p" href="tel:+15195550177">Book now</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gallery" id="gallery" aria-labelledby="gallery-h">
+    <div class="wrap">
+      <h2 id="gallery-h">Chairs, towels and the old photos on the wall</h2>
+      <div class="mosaic">
+        <figure class="frame g1">
+          <div class="pic p2" role="img" aria-label="Photo placeholder"></div>
+          <figcaption><span>Photo to shoot:</span> Wide shot of the shop from the front door, showing the chairs and the photo-covered walls</figcaption>
+        </figure>
+        <figure class="frame g2">
+          <div class="pic p3" role="img" aria-label="Photo placeholder"></div>
+          <figcaption><span>Photo to shoot:</span> Tony giving a hot towel straight razor shave, shot over the shoulder</figcaption>
+        </figure>
+        <figure class="frame g3">
+          <div class="pic p4" role="img" aria-label="Photo placeholder"></div>
+          <figcaption><span>Photo to shoot:</span> Hands-on detail of a classic cut being finished with scissors and comb</figcaption>
+        </figure>
+        <figure class="frame g4">
+          <div class="pic p5" role="img" aria-label="Photo placeholder"></div>
+          <figcaption><span>Photo to shoot:</span> A section of the wall of old photos, framed tight enough to read the faces</figcaption>
+        </figure>
+        <figure class="frame g5">
+          <div class="pic p6" role="img" aria-label="Photo placeholder"></div>
+          <figcaption><span>Photo to shoot:</span> Straight razor, brush and folded hot towels laid out on the counter</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec story" id="story" aria-labelledby="story-h">
+    <div class="wrap">
+      <h2 id="story-h">Grandfather’s chairs, Tony’s shop</h2>
+      <figure class="frame">
+        <div class="pic p3" role="img" aria-label="Photo placeholder"></div>
+        <figcaption><span>Photo to shoot:</span> Tony in the chair his grandfather left him</figcaption>
+      </figure>
+      <div class="prose">
+        <p>Tony took over his grandfather’s shop chairs with one goal: keep the old-school straight razor shave alive. It’s a craft that’s easy to lose, and he wasn’t willing to let it go.</p>
+        <p>Step inside and you’ll see how seriously he takes the past. Old photos cover the walls, and customers love looking through them while they wait. The hot towel shave is done the slow, careful way, and the classic cuts are the kind a barber can be proud of.</p>
+        <p>There’s nothing flashy here, and that’s deliberate. It’s a barbershop that does the basics properly, in the same chairs that started it all.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec visit" id="visit" aria-labelledby="visit-h">
+    <div class="wrap visit-grid">
+      <div>
+        <h2 id="visit-h">Pull up a chair on Wyandotte</h2>
+        <address>1880 Wyandotte St E, Windsor, ON</address>
+        <a class="big-tel" href="tel:+15195550177">519-555-0177</a>
+        <dl class="hours">
+          <div><dt>Tuesday to Saturday</dt><dd>9am to 6pm</dd></div>
+          <div><dt>Sunday and Monday</dt><dd>Closed</dd></div>
+        </dl>
+        <div class="btns">
+          <a class="btn btn-p" href="tel:+15195550177">Book now</a>
+          <a class="btn btn-s" href="https://www.google.com/maps/dir/?api=1&destination=Old%20Walkerville%20Barber%2C%201880%20Wyandotte%20St%20E%2C%20Windsor%2C%20ON" rel="noopener">Get directions</a>
+        </div>
+      </div>
+      <div class="map">
+        <iframe title="Map showing Old Walkerville Barber at 1880 Wyandotte St E, Windsor" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Old%20Walkerville%20Barber%2C%201880%20Wyandotte%20St%20E%2C%20Windsor%2C%20ON&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <h2>Old Walkerville Barber</h2>
+        <p>1880 Wyandotte St E, Windsor, ON</p>
+      </div>
+      <div>
+        <p><a href="tel:+15195550177">519-555-0177</a></p>
+      </div>
+      <div>
+        <p>Tuesday to Saturday, 9am to 6pm</p>
+        <p>Closed Sunday and Monday</p>
+      </div>
+      <div><a class="btn btn-p" href="tel:+15195550177">Book now</a></div>
+    </div>
+    <p class="credit">Site by HamadaJR Media</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.querySelector('.menu-btn'),menu=document.getElementById('menu');
+  if(!btn||!menu)return;
+  function set(open){menu.classList.toggle('open',open);btn.setAttribute('aria-expanded',open?'true':'false');btn.textContent=open?'Close':'Menu';}
+  btn.addEventListener('click',function(){set(!menu.classList.contains('open'));});
+  menu.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open')){set(false);btn.focus();}});
+})();
+</script>
+</body>
+</html>
