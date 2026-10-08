@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riverfront Fade Co. | Barbershop on Wyandotte St E, Windsor</title>
+<meta name="description" content="Riverfront Fade Co. is a Windsor barbershop on Wyandotte St E. Skin fades, beard trims and hot towel shaves, with no rush and good conversation in the chair.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<!-- DESIGN PLAN
+Subject world: A Windsor barbershop on Wyandotte St E, near the Detroit River. Clippers, guards, combs, hot towels, shaving foam, the red/white barber pole, tile and mirrors. Origin story is a basement where friends got cut on Saturdays, so the feel is easy and unhurried, but sharp.
+Palette: Lather #F1F3F2 (background), Towel #E1E6E5 (alt band), Ink #14202E (deep river navy text), Steel #4A5A67 (secondary text), Pole Red #B5132B (the ONE accent).
+Type: Big Shoulders Display (condensed signage-style headings, uppercase, like shop-window lettering) and Barlow (body, prices notes, UI). No serif: this is a modern neighbourhood shop, not heritage or luxury.
+Layout concept: Hero = full-width two-line headline, lead and buttons beneath, and a full-bleed band of fine vertical lines that fades from solid ink to nothing, like a skin fade. Services = ruled price-board rows. Gallery = asymmetric 12-column mosaic of texture panels. Story = tall photo slot beside long-form text on a towel band. Visit = hours and address beside the map.
+The ONE memorable move: the hero's fade band. Hair-fine lines that dissolve from dark to skin tone, wiping in on load, plus a thin barber-pole stripe under the nav.
+Generic check: A lazy designer would do black and gold, a moody dark theme, a serif "heritage" logo and a stock photo of a razor. This is a light, cool palette from the tile and towels, signage lettering, and the fade itself built as the graphic.
+-->
+<!-- SIGNATURE: Fade-band and pole stripe | Big Shoulders Display + Barlow | #F1F3F2 / #14202E, accent #B5132B | full-width headline over bottom fade-line band -->
+<style>
+:root{
+  --lather:#F1F3F2;
+  --towel:#E1E6E5;
+  --ink:#14202E;
+  --steel:#4A5A67;
+  --red:#B5132B;
+  --r:4px;
+  --ease:cubic-bezier(.19,.82,.24,1);
+  --nav:64px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Barlow',system-ui,sans-serif;font-size:1.0625rem;line-height:1.6;color:var(--ink);background:var(--lather);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,iframe{display:block;max-width:100%}
+h1,h2,h3{font-family:'Big Shoulders Display',sans-serif;text-transform:uppercase;line-height:.98;letter-spacing:.005em;font-weight:800}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;z-index:100;border-radius:var(--r)}
+.skip:focus{left:8px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;font:600 1rem 'Barlow',sans-serif;letter-spacing:.03em;text-decoration:none;border-radius:var(--r);border:2px solid var(--ink);cursor:pointer;transition:background .2s,color .2s,transform .2s var(--ease)}
+.btn-primary{background:var(--red);border-color:var(--red);color:#fff}
+.btn-primary:hover{background:var(--ink);border-color:var(--ink)}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--lather)}
+.btn:active{transform:translateY(1px)}
+
+/* nav */
+header{position:sticky;top:0;z-index:50;background:var(--lather)}
+header::after{content:"";display:block;height:6px;background:repeating-linear-gradient(135deg,var(--red) 0 12px,#fff 12px 24px,var(--ink) 24px 36px,#fff 36px 48px)}
+.nav{height:var(--nav);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:'Big Shoulders Display',sans-serif;font-weight:900;text-transform:uppercase;font-size:1.55rem;letter-spacing:.02em;text-decoration:none;white-space:nowrap;line-height:1}
+.nav-links{display:none;list-style:none;align-items:center;gap:28px}
+.nav-links a{text-decoration:none;font-weight:500}
+.nav-links a:hover{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-phone{display:none;font-weight:600;text-decoration:none;white-space:nowrap}
+.nav .btn{min-height:42px;padding:0 18px}
+.menu-btn{width:44px;height:44px;background:none;border:2px solid var(--ink);border-radius:var(--r);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink)}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:20px;height:2px;background:currentColor;position:relative;content:""}
+.menu-btn span::before{position:absolute;top:-6px}
+.menu-btn span::after{position:absolute;top:6px}
+.mobile-menu{display:none;border-top:1px solid var(--towel);background:var(--lather);padding:8px 24px 20px}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:14px 0;border-bottom:1px solid var(--towel);text-decoration:none;font-weight:500;font-size:1.15rem}
+@media(min-width:768px){
+  .nav-links{display:flex}
+  .nav-phone{display:inline}
+  .menu-btn,.mobile-menu,.mobile-menu.open{display:none}
+}
+
+/* hero */
+.hero{min-height:calc(100dvh - var(--nav) - 6px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.hero-body{padding:clamp(40px,8vh,88px) 0 clamp(32px,5vh,56px)}
+.hero h1{font-size:clamp(2.2rem,8.5vw,6rem);font-weight:900;text-wrap:balance;max-width:20ch}
+.hero-lead{margin-top:clamp(20px,3vh,32px);font-size:clamp(1.1rem,2.2vw,1.35rem);color:var(--steel);max-width:34ch;line-height:1.45}
+.hero-actions{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px}
+.fadeband{height:clamp(80px,14vh,140px);position:relative;transform-origin:left center}
+.fadeband::before,.fadeband::after{content:"";position:absolute;inset:0}
+.fadeband::before{background:repeating-linear-gradient(90deg,var(--ink) 0 3px,transparent 3px 7px);-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 14%,transparent 100%);mask-image:linear-gradient(90deg,#000 0%,#000 14%,transparent 100%)}
+.fadeband::after{background:repeating-linear-gradient(90deg,var(--ink) 0 1px,transparent 1px 7px);background-position:3px 0;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 55%,transparent 100%);mask-image:linear-gradient(90deg,transparent 30%,#000 55%,transparent 100%);opacity:.45}
+
+/* hero load motion */
+.rv{opacity:0;transform:translateY(32px);animation:rise 1s var(--ease) forwards;animation-delay:calc(var(--d,0) * 110ms + 100ms)}
+.fadeband.rv{transform:scaleX(.02);opacity:0;animation-name:wipe;animation-duration:1.5s;animation-delay:500ms}
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes wipe{to{opacity:1;transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){
+  .rv,.fadeband.rv{animation:none;opacity:1;transform:none}
+  html{scroll-behavior:auto}
+  .btn{transition:none}
+}
+
+/* sections */
+section{padding:clamp(64px,9vw,120px) 0}
+h2{font-size:clamp(2.2rem,5.4vw,4rem);text-wrap:balance}
+
+/* services */
+.price-board{margin-top:clamp(32px,5vw,56px);border-top:3px solid var(--ink);list-style:none}
+.price-board li{display:grid;grid-template-columns:1fr auto;grid-template-areas:"name price" "desc desc";gap:6px 20px;padding:26px 0;border-bottom:1px solid var(--steel);align-items:baseline}
+.price-board h3{grid-area:name;font-size:clamp(1.9rem,4vw,2.9rem)}
+.price-board p{grid-area:desc;color:var(--steel);max-width:56ch}
+.price-board .price{grid-area:price;font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:clamp(1.9rem,4vw,2.9rem);line-height:1}
+@media(min-width:768px){
+  .price-board li{grid-template-columns:minmax(220px,1fr) 2fr auto;grid-template-areas:"name desc price";gap:32px;align-items:baseline;padding:30px 0}
+}
+
+/* gallery */
+.gallery{background:var(--towel)}
+.mosaic{margin-top:clamp(32px,5vw,56px);display:grid;grid-template-columns:1fr;gap:28px 20px}
+.mosaic figure{margin:0}
+.ph{border-radius:var(--r);position:relative;overflow:hidden;height:240px}
+.mosaic figcaption{margin-top:10px;font-size:.95rem;color:var(--steel);max-width:52ch;line-height:1.45}
+.mosaic figcaption b{color:var(--ink);font-weight:600}
+.p-fade{background:var(--ink)}
+.p-fade::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,var(--lather) 0 2px,transparent 2px 7px);-webkit-mask-image:linear-gradient(90deg,transparent 8%,#000 100%);mask-image:linear-gradient(90deg,transparent 8%,#000 100%)}
+.p-cut{background:var(--steel);background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.16) 0 2px,transparent 2px 11px)}
+.p-towel{background:#fff;background-image:repeating-linear-gradient(0deg,var(--lather) 0 14px,#fff 14px 28px)}
+.p-beard{background:var(--ink);background-image:radial-gradient(circle,rgba(241,243,242,.4) 1.3px,transparent 1.8px);background-size:10px 10px}
+.p-shop{background:#CDD5D4;background-image:linear-gradient(rgba(74,90,103,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(74,90,103,.35) 1px,transparent 1px);background-size:44px 44px}
+.p-kid{background:repeating-linear-gradient(135deg,var(--red) 0 18px,#fff 18px 36px,var(--ink) 36px 54px,#fff 54px 72px)}
+@media(min-width:768px){
+  .mosaic{grid-template-columns:repeat(12,1fr)}
+  .m1{grid-column:span 7}.m2{grid-column:span 5}
+  .m3,.m4,.m5{grid-column:span 4}
+  .m6{grid-column:span 5}.m7{grid-column:span 7}
+  .m1 .ph,.m2 .ph{height:320px}
+  .m3 .ph,.m4 .ph,.m5 .ph{height:240px}
+  .m6 .ph,.m7 .ph{height:280px}
+}
+
+/* story */
+.story-grid{display:grid;gap:36px}
+.story .ph{height:360px}
+.story h2{margin-bottom:24px}
+.story p{max-width:58ch;margin-bottom:1.15em}
+.story p.first{font-size:clamp(1.2rem,2.2vw,1.45rem);line-height:1.5;font-weight:500}
+.story figcaption{margin-top:10px;font-size:.95rem;color:var(--steel)}
+.story figcaption b{color:var(--ink);font-weight:600}
+@media(min-width:768px){
+  .story-grid{grid-template-columns:5fr 6fr;gap:clamp(40px,7vw,96px);align-items:start}
+  .story .ph{height:560px}
+  .story figure{position:sticky;top:100px}
+}
+
+/* visit */
+.visit{background:var(--towel)}
+.visit-grid{margin-top:clamp(32px,5vw,56px);display:grid;gap:36px}
+.visit h3{font-size:1.6rem;margin-bottom:10px}
+.visit address{font-style:normal;margin-bottom:28px;font-size:1.2rem;line-height:1.5}
+.visit address a{text-underline-offset:4px;text-decoration-thickness:2px}
+.hours{list-style:none;margin-bottom:28px;max-width:380px}
+.hours li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--steel)}
+.hours .closed{color:var(--steel)}
+.map{border:0;width:100%;height:340px;border-radius:var(--r);background:var(--lather)}
+@media(min-width:768px){
+  .visit-grid{grid-template-columns:5fr 7fr;gap:56px;align-items:start}
+  .map{height:480px}
+}
+
+/* footer */
+footer{padding:48px 0 32px;border-top:6px solid transparent;border-image:repeating-linear-gradient(135deg,var(--red) 0 12px,#fff 12px 24px,var(--ink) 24px 36px,#fff 36px 48px) 6}
+.foot{display:grid;gap:28px}
+.foot .brand{font-size:1.8rem;display:inline-block;margin-bottom:8px}
+.foot p,.foot li{color:var(--steel);font-size:1rem}
+.foot a{color:var(--ink)}
+.foot ul{list-style:none}
+.foot-small{margin-top:36px;padding-top:18px;border-top:1px solid var(--towel);font-size:.9rem;color:var(--steel)}
+@media(min-width:768px){.foot{grid-template-columns:1.2fr 1fr 1fr;gap:48px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">Riverfront Fade Co.</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#story">Our story</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="nav-phone" href="tel:+15195550142">519-555-0142</a>
+      <a class="btn btn-primary" href="tel:+15195550142">Book now</a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#story">Our story</a>
+    <a href="#visit">Visit</a>
+    <a href="tel:+15195550142">Call 519-555-0142</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="hero" id="top">
+    <div class="wrap hero-body">
+      <h1 class="rv" style="--d:0">Clean fades where everyone's a regular</h1>
+      <p class="hero-lead rv" style="--d:1">A Windsor barbershop on Wyandotte St E. Skin fades, beard trims and hot towel shaves, with no rush.</p>
+      <div class="hero-actions rv" style="--d:2">
+        <a class="btn btn-primary" href="tel:+15195550142">Book now</a>
+        <a class="btn btn-ghost" href="#visit">Get directions</a>
+      </div>
+    </div>
+    <div class="fadeband rv" aria-hidden="true"></div>
+  </div>
+
+  <section id="services" aria-labelledby="services-h">
+    <div class="wrap">
+      <h2 id="services-h">Cuts, shaves and a proper sit-down</h2>
+      <ul class="price-board">
+        <li>
+          <h3>Skin fade</h3>
+          <p>A clean, sharp blend, done without watching the clock. You leave with edges that hold up for days and a fade you'll want to show off.</p>
+          <span class="price">$35</span>
+        </li>
+        <li>
+          <h3>Beard trim</h3>
+          <p>Shaped and tidied so your beard looks intentional. Clean lines, a balanced shape, and a quick chat while we work.</p>
+          <span class="price">$20</span>
+        </li>
+        <li>
+          <h3>Kids cut</h3>
+          <p>A patient cut for the younger regulars. Relaxed chair, steady hands, and a kid who walks out feeling sharp.</p>
+          <span class="price">$25</span>
+        </li>
+        <li>
+          <h3>Hot towel shave</h3>
+          <p>Warm towels, a close shave and time to slow down. The kind of break most people don't give themselves.</p>
+          <span class="price">$40</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery" aria-labelledby="gallery-h">
+    <div class="wrap">
+      <h2 id="gallery-h">Inside the shop</h2>
+      <div class="mosaic">
+        <figure class="m1">
+          <div class="ph p-fade" role="img" aria-label="Placeholder panel"></div>
+          <figcaption><b>Photo to shoot:</b> Close-up of a finished skin fade from the side, showing the blend under shop lighting</figcaption>
+        </figure>
+        <figure class="m2">
+          <div class="ph p-cut" role="img" aria-label="Placeholder panel"></div>
+          <figcaption><b>Photo to shoot:</b> Marcus mid-cut, focused, with a client relaxed in the chair</figcaption>
+        </figure>
+        <figure class="m3">
+          <div class="ph p-towel" role="img" aria-label="Placeholder panel"></div>
+          <figcaption><b>Photo to shoot:</b> Hot towel steaming on a client's face before a shave</figcaption>
+        </figure>
+        <figure class="m4">
+          <div class="ph p-beard" role="img" aria-label="Placeholder panel"></div>
+          <figcaption><b>Photo to shoot:</b> Beard trim in progress with the clippers and comb in frame</figcaption>
+        </figure>
+        <figure class="m5">
+          <div class="ph p-kid" role="img" aria-label="Placeholder panel"></div>
+          <figcaption><b>Photo to shoot:</b> A kid in the chair grinning at the mirror after a fresh cut</figcaption>
+        </figure>
+        <figure class="m6" style="grid-column-end:span 12">
+          <div class="ph p-shop" role="img" aria-label="Placeholder panel" style="height:260px"></div>
+          <figcaption><b>Photo to shoot:</b> Wide shot of the shop interior: chairs, mirrors and the waiting area</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="story" aria-labelledby="story-h">
+    <div class="wrap story-grid">
+      <figure>
+        <div class="ph p-fade" role="img" aria-label="Placeholder panel"></div>
+        <figcaption><b>Photo to shoot:</b> Marcus at his chair on Wyandotte St E</figcaption>
+      </figure>
+      <div>
+        <h2 id="story-h">Everyone's a regular here</h2>
+        <p class="first">Marcus learned to cut hair in his mom's basement, working on his friends' heads one Saturday at a time. Those sessions had good conversation and no one watching the clock, and he never forgot how that felt.</p>
+        <p>Riverfront Fade Co. is that basement, grown up. Marcus built a shop where everyone feels like a regular, even on their first visit. You get a clean fade, a chair that isn't rushed, and someone who's actually listening.</p>
+        <p>Whether you're in for a skin fade, a beard trim, a hot towel shave or a kid's first proper cut, the idea is the same. Come in, sit down, and leave looking sharp.</p>
+        <a class="btn btn-primary" href="tel:+15195550142">Book now</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="visit" id="visit" aria-labelledby="visit-h">
+    <div class="wrap">
+      <h2 id="visit-h">Pull up a chair on Wyandotte</h2>
+      <div class="visit-grid">
+        <div>
+          <h3>Find us</h3>
+          <address>
+            412 Wyandotte St E<br>Windsor, ON<br>
+            <a href="tel:+15195550142">519-555-0142</a>
+          </address>
+          <h3>Hours</h3>
+          <ul class="hours">
+            <li class="closed"><span>Monday</span><span>Closed</span></li>
+            <li><span>Tuesday</span><span>10am to 7pm</span></li>
+            <li><span>Wednesday</span><span>10am to 7pm</span></li>
+            <li><span>Thursday</span><span>10am to 7pm</span></li>
+            <li><span>Friday</span><span>10am to 7pm</span></li>
+            <li><span>Saturday</span><span>9am to 4pm</span></li>
+            <li class="closed"><span>Sunday</span><span>Closed</span></li>
+          </ul>
+          <a class="btn btn-primary" href="tel:+15195550142">Book now</a>
+        </div>
+        <iframe class="map" title="Map showing Riverfront Fade Co. at 412 Wyandotte St E, Windsor" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=412%20Wyandotte%20St%20E%2C%20Windsor%2C%20ON&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#top">Riverfront Fade Co.</a>
+        <p>Clean fades where everyone's a regular.</p>
+        <p style="margin-top:16px"><a class="btn btn-primary" href="tel:+15195550142">Book now</a></p>
+      </div>
+      <div>
+        <p><strong style="color:var(--ink)">Visit</strong></p>
+        <p>412 Wyandotte St E, Windsor, ON</p>
+        <p><a href="tel:+15195550142">519-555-0142</a></p>
+      </div>
+      <div>
+        <p><strong style="color:var(--ink)">Hours</strong></p>
+        <ul>
+          <li>Tue to Fri: 10am to 7pm</li>
+          <li>Sat: 9am to 4pm</li>
+          <li>Sun and Mon: Closed</li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot-small">&copy; Riverfront Fade Co. Site by HamadaJR Media</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var b=document.getElementById('menuBtn'),m=document.getElementById('mobileMenu');
+  b.addEventListener('click',function(){
+    var o=m.classList.toggle('open');
+    b.setAttribute('aria-expanded',o);
+  });
+  m.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){m.classList.remove('open');b.setAttribute('aria-expanded','false');}
+  });
+})();
+</script>
+</body>
+</html>
